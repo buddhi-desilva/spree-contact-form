@@ -13,3 +13,4 @@ en:
   emails: Emails
   new_contact_topic: New Contact Topic
   comma_delimited: comma delimited
+  recaptcha_verification_failure: "Verification failed please type the code displayed below correctly"        

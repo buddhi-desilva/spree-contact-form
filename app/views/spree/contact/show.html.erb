@@ -36,6 +36,10 @@
           <%= f.text_area :message, :rows => 10  %>  
         </p>
 
+				<p>
+					<%= recaptcha_tags %>
+				</p>
+
         <p><%= submit_tag t("send_message"), :class => 'button primary' %></p>
       </div>
     <% end %>

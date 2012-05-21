@@ -7,19 +7,31 @@ module Spree
 	  end
 
 	  def create
-	    @message = Message.new(params[:message] || {})
-	    if @message.save
-	      ContactMailer.message_email(@message).deliver
-	      flash[:notice] = t('contact_thank_you')
-	      redirect_to root_path
-	    else
-	      render :action => 'show'
-	    end
+			@message = Message.new(params[:message] || {})
+			if validate_human && @message.save
+				# save & send the message
+				ContactMailer.message_email(@message).deliver
+				flash[:notice] = t('contact_thank_you')
+				redirect_to root_path
+			else
+				# throw error and send back to contact form
+				render :action => 'show'
+			end
 	  end
 
 	private
 	  def load_topics
 	    @topics = ContactTopic.all
 	  end
+	
+		def validate_human
+			if verify_recaptcha
+				true
+			else
+				flash[:error] = t(:recaptcha_verification_failure)
+				false
+			end
+		end
+	
 	end	
 end
