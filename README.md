@@ -1,7 +1,7 @@
 Spree Contact Form Extension
 =========
 
-An spree extension for contact forms with reCAPTCHA
+A spree extension for contact forms with reCAPTCHA
 
 Installation
 ============
